@@ -1,8 +1,13 @@
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="h-screen w-screen bg-bg flex justify-center items-center">
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </div>
   );
 }
 

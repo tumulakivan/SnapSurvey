@@ -1,1 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-bg: #171717;
+  --color-offwhite: #f1f1f1;
+  --color-emphasizedtext: #ffc20c;
+  --color-cardstop: #2d2d2d;
+  --color-cardend: #393939;
+  --color-fieldgray: #838383;
+  --color-btn-start: #fec70b;
+  --color-btn-stop: #fba51c;
+  --color-btn-end: #f27223;
+
+  --shadow-login: -1px -1px 1px rgba(255, 255, 255, 0.5),
+    0px 0px 10px rgba(0, 0, 0, 0.75);
+
+  --font-company: "Monoton", sans-serif;
+}
