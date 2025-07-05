@@ -3,8 +3,9 @@ import activeDoor from "../assets/icons/activedoor.png";
 import inactiveDoor from "../assets/icons/inactivedoor.png";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import type { NavbarTypes } from "../types/NavbarTypes";
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarTypes> = ({ handleMenu }) => {
   const [doorStatus, setDoorStatus] = useState(false);
   const [doorHovered, setDoorHovered] = useState(false);
 
@@ -16,8 +17,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 rounded-xl h-[7%] border border-btn-stop">
-      <LogoCombo />
+    <div className="flex justify-between items-center p-4 mt-4 ml-4 mr-4 rounded-xl h-[7%] shadow-login bg-black border border-btn-stop">
+      <LogoCombo onClick={handleMenu} />
       <img
         src={doorStatus || doorHovered ? activeDoor : inactiveDoor}
         alt="exit"

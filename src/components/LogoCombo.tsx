@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import inactiveBurger from "../assets/icons/inactiveburger.png";
 import activeBurger from "../assets/icons/activeburger.png";
-import type { MenuTypes } from "../types/MenuTypes";
+import type { DashboardTypes } from "../types/DashboardTypes";
 
-const LogoCombo: React.FC<MenuTypes> = ({ onClick }) => {
+const LogoCombo: React.FC<DashboardTypes> = ({ onClick }) => {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [burgerHovered, setBurgerHovered] = useState(false);
   const navigate = useNavigate();
