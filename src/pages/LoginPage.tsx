@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import locked from "../assets/icons/locked48.png";
 import unlocked from "../assets/icons/altunlocked48.png";
-import { authService } from "../services/authService";
+import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
@@ -13,12 +13,14 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState(""); // any for now
   const navigate = useNavigate();
 
+  const { login } = useAuth();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     try {
-      await authService.login(username, password);
+      await login(username, password);
       navigate("/");
     } catch (err) {
       setError(String(err));

@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactElement;
 };
 
-const ProtectedDashboard = ({ children }: Props) => {
+const ProtectedRoute = ({ children }: Props) => {
   const { loginStatus } = useAuth();
 
   if (!loginStatus) {
@@ -15,4 +15,4 @@ const ProtectedDashboard = ({ children }: Props) => {
   return children;
 };
 
-export default ProtectedDashboard;
+export default ProtectedRoute;
