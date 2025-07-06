@@ -1,10 +1,17 @@
 import { useState } from "react";
 import type { MenuTypes } from "../types/MenuTypes";
+import { useNavigate } from "react-router-dom";
 
 const Menu: React.FC<MenuTypes> = ({ status }) => {
   const [selectedPage, setSelectedPage] = useState<
     "surveys" | "participants" | "results"
   >("surveys");
+  const navigate = useNavigate();
+
+  const handleChangePage = (page: "surveys" | "participants" | "results") => {
+    setSelectedPage(page);
+    navigate(`/${page}`);
+  };
 
   return (
     <div
@@ -20,7 +27,7 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
             ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-4"
             : "text-emphasizedtext"
         }`}
-        onClick={() => setSelectedPage("surveys")}
+        onClick={() => handleChangePage("surveys")}
       >
         Surveys
       </button>
@@ -30,7 +37,7 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
             ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-4"
             : "text-emphasizedtext"
         }`}
-        onClick={() => setSelectedPage("participants")}
+        onClick={() => handleChangePage("participants")}
       >
         Participants
       </button>
@@ -40,7 +47,7 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
             ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-4"
             : "text-emphasizedtext"
         }`}
-        onClick={() => setSelectedPage("results")}
+        onClick={() => handleChangePage("results")}
       >
         Results
       </button>
