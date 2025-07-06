@@ -2,27 +2,9 @@ import { useState } from "react";
 import type { MenuTypes } from "../types/MenuTypes";
 
 const Menu: React.FC<MenuTypes> = ({ status }) => {
-  const [surveysStatus, setSurveysStatus] = useState(false);
-  const [participantsStatus, setParticipantsStatus] = useState(false);
-  const [resultsStatus, setResultsStatus] = useState(false);
-
-  const onSurveySelect = () => {
-    setSurveysStatus(true);
-    setParticipantsStatus(false);
-    setResultsStatus(false);
-  };
-
-  const onParticipantSelect = () => {
-    setSurveysStatus(false);
-    setParticipantsStatus(true);
-    setResultsStatus(false);
-  };
-
-  const onResultsSelect = () => {
-    setSurveysStatus(false);
-    setParticipantsStatus(false);
-    setResultsStatus(true);
-  };
+  const [selectedPage, setSelectedPage] = useState<
+    "surveys" | "participants" | "results"
+  >("surveys");
 
   return (
     <div
@@ -34,31 +16,31 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
     >
       <button
         className={`text-xl p-2 rounded-lg transition-all duration-200 hover:bg-btn-hovered cursor-pointer ${
-          surveysStatus
+          selectedPage === "surveys"
             ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-4"
             : "text-emphasizedtext"
         }`}
-        onClick={onSurveySelect}
+        onClick={() => setSelectedPage("surveys")}
       >
         Surveys
       </button>
       <button
         className={`text-xl p-2 rounded-lg transition-all duration-200 hover:bg-btn-hovered cursor-pointer ${
-          participantsStatus
+          selectedPage === "participants"
             ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-4"
             : "text-emphasizedtext"
         }`}
-        onClick={onParticipantSelect}
+        onClick={() => setSelectedPage("participants")}
       >
         Participants
       </button>
       <button
         className={`text-xl p-2 rounded-lg transition-all duration-200 hover:bg-btn-hovered cursor-pointer ${
-          resultsStatus
+          selectedPage === "results"
             ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-4"
             : "text-emphasizedtext"
         }`}
-        onClick={onResultsSelect}
+        onClick={() => setSelectedPage("results")}
       >
         Results
       </button>

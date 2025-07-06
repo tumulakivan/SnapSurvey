@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
 
       return () => clearTimeout(errorTimeout);
     }
-  });
+  }, [error]);
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-tl from-bg to-cardend h-[60%] w-[30%] rounded-2xl p-8 shadow-login shadow-loginbg">

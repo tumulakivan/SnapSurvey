@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { authService } from "../services/authService";
 import type { AuthContextTypes } from "../types/AuthContextTypes";
 
@@ -14,6 +14,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loginStatus, setLoginStatus] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const login = async (username: string, password: string) => {
     await authService.login(username, password);
@@ -25,8 +26,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoginStatus(false);
   };
 
+  useEffect(() => {
+    const isAuthenticated = authService.checkAuth();
+    console.log("Auth in session (debugging): ", isAuthenticated);
+    setLoginStatus(isAuthenticated);
+    setLoading(false);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ loginStatus, login, logout }}>
+    <AuthContext.Provider value={{ loginStatus, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
