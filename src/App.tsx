@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import LoginProtection from "./pages/LoginProtection";
 import DashboardProtection from "./pages/DashboardProtection";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="h-screen w-screen bg-bg flex justify-center items-center">
       <Routes>
         <Route path="/" element={<DashboardProtection />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginProtection />} />
       </Routes>
     </div>
   );
