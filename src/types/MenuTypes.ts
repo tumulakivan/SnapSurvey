@@ -1,3 +1,3 @@
 export type MenuTypes = {
-  onClick: () => void;
+  status: boolean;
 };
