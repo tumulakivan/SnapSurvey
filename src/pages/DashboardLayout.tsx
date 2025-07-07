@@ -13,7 +13,7 @@ const DashboardLayout: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full">
       <Navbar handleMenu={handleMenu} />
-      <div className="flex flex-row w-full h-full overflow-hidden pb-4 pt-4">
+      <div className="relative flex flex-row w-full h-full overflow-hidden lg:pb-4 lg:pt-4">
         <Menu status={menuStatus} />
         <Dashboard />
       </div>

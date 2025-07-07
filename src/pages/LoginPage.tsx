@@ -38,14 +38,14 @@ const LoginPage: React.FC = () => {
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-tl from-bg to-cardend h-[60%] w-[30%] rounded-2xl p-8 shadow-login shadow-loginbg">
+    <div className="flex flex-col items-center bg-gradient-to-tl from-bg to-cardend h-[60%] w-[80%] md:h-[40%] md:w-[40%] lg:h-[60%] lg:w-[20%] rounded-2xl p-8 shadow-login shadow-loginbg">
       <div className="h-1/2 w-full flex flex-col items-center justify-center">
         <img
           src="/snaplogo.png"
           alt="company logo"
           className="w-[10rem] -translate-y-4"
         />
-        <h1 className="text-emphasizedtext text-4xl font-company">
+        <h1 className="text-emphasizedtext text-3xl md:text-4xl font-company">
           SNAPSURVEY
         </h1>
       </div>

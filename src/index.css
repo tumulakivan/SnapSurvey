@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #171717;
+  --color-bg: #272727;
   --color-offwhite: #f1f1f1;
   --color-emphasizedtext: #ffc20c;
   --color-cardstop: #2d2d2d;

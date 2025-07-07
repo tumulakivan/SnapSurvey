@@ -15,9 +15,9 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
 
   return (
     <div
-      className={`flex flex-col gap-4 h-full border shadow-login border-btn-stop bg-black rounded-xl transition-all duration-500 ${
+      className={`flex flex-col gap-4 h-full absolute lg:relative border shadow-login border-btn-stop bg-black lg:rounded-xl transition-all duration-500 ${
         status
-          ? "opacity-100 scale-100 max-w-[640px] min-w-[200px] w-[320px] ml-4 p-4"
+          ? "opacity-100 scale-100 w-screen z-9999 lg:max-w-[640px] lg:min-w-[200px] lg:w-[320px] lg:ml-4 p-4"
           : "opacity-0 scale-0 w-0 ml-0 p-0"
       }`}
     >
