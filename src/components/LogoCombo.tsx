@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import inactiveBurger from "../assets/icons/inactiveburger.png";
 import activeBurger from "../assets/icons/activeburger.png";
 import type { DashboardTypes } from "../types/DashboardTypes";
@@ -7,7 +6,6 @@ import type { DashboardTypes } from "../types/DashboardTypes";
 const LogoCombo: React.FC<DashboardTypes> = ({ onClick }) => {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [burgerHovered, setBurgerHovered] = useState(false);
-  const navigate = useNavigate();
 
   const handleBurger = () => {
     setBurgerStatus(!burgerStatus);
@@ -19,8 +17,7 @@ const LogoCombo: React.FC<DashboardTypes> = ({ onClick }) => {
       <img
         src="./snaplogo.png"
         alt="SnapSurvey"
-        className="w-[4%] -ml-[20px] cursor-pointer select-none"
-        onClick={() => navigate("/")}
+        className="w-[4%] -ml-[20px] select-none"
       />
       <img
         src={burgerStatus || burgerHovered ? activeBurger : inactiveBurger}

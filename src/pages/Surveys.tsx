@@ -6,8 +6,9 @@ import inactiveTrash from "../assets/icons/blackdelete48.png";
 import trash from "../assets/icons/delete48.png";
 
 const Surveys: React.FC = () => {
-  const { surveys, setSurveys, updateSurvey, deleteSurvey } = useMockSurveys();
+  const { surveys, updateSurvey, deleteSurvey } = useMockSurveys();
   const [editModalStatus, setEditModalStatus] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const surveysPerPage = 10;
   const lastSurveyIndex = currentPage * surveysPerPage;
@@ -26,7 +27,7 @@ const Surveys: React.FC = () => {
     setEditDescription(s.description);
   };
 
-  const handleSaveButton = (s: Survey) => {
+  const handleSaveButton = () => {
     if (!editSurvey) return;
 
     const updatedSurvey: Survey = {
@@ -46,6 +47,21 @@ const Surveys: React.FC = () => {
     setEditName("");
     setEditDescription("");
     setEditModalStatus(false);
+    setDeleteStatus(false);
+  };
+
+  const handleDeleteButton = (s: Survey) => {
+    setDeleteStatus(true);
+    setEditSurvey(s);
+  };
+
+  const handleDeleteConfirmation = () => {
+    if (editSurvey) {
+      deleteSurvey(editSurvey.id);
+      setEditName("");
+      setEditDescription("");
+      setDeleteStatus(false);
+    }
   };
 
   return (
@@ -94,7 +110,7 @@ const Surveys: React.FC = () => {
                   </button>
                   <button
                     className="group p-4 rounded-sm border-2 border-btn-stop cursor-pointer hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end"
-                    onClick={() => deleteSurvey(survey.id)}
+                    onClick={() => handleDeleteButton(survey)}
                   >
                     <img
                       src={trash}
@@ -176,10 +192,35 @@ const Surveys: React.FC = () => {
               <button
                 className="w-[50%] px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"
                 onClick={() => {
-                  if (editSurvey) handleSaveButton(editSurvey);
+                  if (editSurvey) handleSaveButton();
                 }}
               >
                 Save Changes
+              </button>
+              <button
+                className="w-[50%] px-4 py-2 bg-bg border border-btn-stop text-emphasizedtext hover:text-bg hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"
+                onClick={() => handleCancelButton()}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {deleteStatus && (
+        <div className="absolute inset-0 w-full h-full bg-transparentoverlay">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-auto flex flex-col gap-2 overflow-hidden bg-gradient-to-tl from-bg via-cardstop to-cardend shadow-login rounded-lg">
+            <div className="flex flex-row w-full h-auto p-4 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black justify-between">
+              <h1 className="font-bold text-2xl">Confirm Survey Delete</h1>
+            </div>
+            <div className="flex flex-row gap-2 p-4 mb-2">
+              <button
+                className="w-[50%] px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"
+                onClick={() => {
+                  if (editSurvey) handleDeleteConfirmation();
+                }}
+              >
+                Delete
               </button>
               <button
                 className="w-[50%] px-4 py-2 bg-bg border border-btn-stop text-emphasizedtext hover:text-bg hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"

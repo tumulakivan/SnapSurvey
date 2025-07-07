@@ -24,13 +24,22 @@ export function useMockSurveys() {
     if (parsed && Array.isArray(parsed) && parsed.length > 0) {
       setSurveys(parsed);
     } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(mockSurveys));
       setSurveys(mockSurveys);
+
+      // 👇 also reflect the change immediately to avoid stale state
+      setTimeout(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(mockSurveys));
+      }, 0);
     }
   }, []);
 
   // saves to localStorage whenever a change occurs in the survey list; updated/deleted a survey
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(surveys));
+    // Only save if surveys is not empty (prevents saving [] on first render)
+    if (surveys.length > 0) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(surveys));
+    }
   }, [surveys]);
 
   // s == placeholder for selected survey
