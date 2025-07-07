@@ -66,8 +66,9 @@ const Surveys: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full h-full p-4 bg-bg rounded-xl gap-4 relative">
-      <div className="w-full h-full rounded-sm overflow-auto">
-        <table className="table-separate text-left table-auto w-full h-auto">
+      <div className="w-full h-full lg:rounded-sm lg:overflow-auto">
+        <div className="w-[85%] h-[70%] block bg-bg border border-btn-stop lg:hidden"></div>
+        <table className="hidden lg:table table-separate text-left table-auto w-full h-auto">
           <thead>
             <tr className="bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black p-2">
               <th className="p-2 w-[17.5%]">Name</th>
@@ -129,7 +130,7 @@ const Surveys: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex flex-row justify-center items-center w-full h-auto gap-2">
+      <div className="lg:flex lg:flex-row justify-center items-center w-full h-auto gap-2 hidden lg:block">
         <button
           className="px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black cursor-pointer rounded-sm"
           onClick={() => {
