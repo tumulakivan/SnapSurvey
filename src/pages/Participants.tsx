@@ -3,7 +3,7 @@ import {
   useMockParticipants,
   type Participant,
 } from "../utilities/useMockParticipants";
-import { useMockSurveys, type Survey } from "../utilities/useMockSurveys";
+import { useMockSurveys } from "../utilities/useMockSurveys";
 import inactivePencil from "../assets/icons/blackpencil48.png";
 import pencil from "../assets/icons/pencil48.png";
 import inactiveTrash from "../assets/icons/blackdelete48.png";
