@@ -11,6 +11,7 @@
   --color-btn-start: #fec70b;
   --color-btn-stop: #fba51c;
   --color-btn-end: #f27223;
+  --color-transparentoverlay: rgba(0, 0, 0, 0.5);
   --color-btn-hovered: rgba(254, 199, 11, 0.25);
 
   --shadow-login: -1px -1px 1px rgba(255, 255, 255, 0.5),

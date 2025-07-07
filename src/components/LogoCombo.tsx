@@ -12,7 +12,6 @@ const LogoCombo: React.FC<DashboardTypes> = ({ onClick }) => {
   const handleBurger = () => {
     setBurgerStatus(!burgerStatus);
     onClick();
-    console.log("burger handled");
   };
 
   return (
