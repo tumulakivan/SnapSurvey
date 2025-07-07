@@ -1,5 +1,3 @@
-// src/data/MockData.ts
-
 export const mockSurveys = [
   {
     id: 1,

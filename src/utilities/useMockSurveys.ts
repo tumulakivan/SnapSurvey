@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mockSurveys } from "../data/MockData";
+import { mockSurveys } from "../data/MockSurveys";
 
 export type Survey = {
   id: number;
@@ -13,7 +13,6 @@ export type Survey = {
 const STORAGE_KEY = "surveys";
 
 export function useMockSurveys() {
-  console.log(mockSurveys);
   const [surveys, setSurveys] = useState<Survey[]>([]);
 
   // load from localStorage on mount
