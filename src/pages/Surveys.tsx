@@ -130,7 +130,7 @@ const Surveys: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="lg:flex lg:flex-row justify-center items-center w-full h-auto gap-2 hidden lg:block">
+      <div className="lg:flex lg:flex-row justify-center items-center w-full h-auto gap-2 hidden">
         <button
           className="px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black cursor-pointer rounded-sm"
           onClick={() => {
