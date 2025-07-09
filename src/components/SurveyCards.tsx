@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMockSurveys, type Survey } from "../hooks/useMockSurveys";
-import Card from "../components/Card";
+import Card from "./SurveyCard";
 import EditOverlay from "./EditOverlay";
 import DeleteOverlay from "./DeleteOverlay";
 

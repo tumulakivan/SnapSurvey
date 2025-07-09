@@ -14,7 +14,7 @@ const PublicRoute = ({ children }: Props) => {
   }
 
   if (loginStatus) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/surveys" replace />;
   }
 
   return children;

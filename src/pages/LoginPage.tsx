@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
 
     try {
       await login(username, password);
-      navigate("/");
+      navigate("/surveys");
     } catch (err) {
       setError(String(err));
     }

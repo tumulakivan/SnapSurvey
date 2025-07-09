@@ -1,100 +1,127 @@
 import { useState } from "react";
-import { useMockSurveys, type Survey } from "../hooks/useMockSurveys";
+import {
+  useMockParticipants,
+  type Participant,
+} from "../hooks/useMockParticipants";
+import { useMockSurveys } from "../hooks/useMockSurveys";
 import inactivePencil from "../assets/icons/blackpencil48.png";
 import pencil from "../assets/icons/pencil48.png";
 import inactiveTrash from "../assets/icons/blackdelete48.png";
 import trash from "../assets/icons/delete48.png";
 
-const SurveysTable: React.FC = () => {
-  const { surveys, updateSurvey, deleteSurvey } = useMockSurveys();
+const ParticipantsTable: React.FC = () => {
+  const { participants, updateParticipant, deleteParticipant } =
+    useMockParticipants();
+  const { surveys } = useMockSurveys();
   const [editModalStatus, setEditModalStatus] = useState(false);
   const [deleteStatus, setDeleteStatus] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const surveysPerPage = 10;
-  const lastSurveyIndex = currentPage * surveysPerPage;
-  const firstSurveyIndex = lastSurveyIndex - surveysPerPage;
-  const currentSurveys = surveys.slice(firstSurveyIndex, lastSurveyIndex);
-  const totalPages = Math.ceil(surveys.length / surveysPerPage);
-  const [editSurvey, setEditSurvey] = useState<Survey>();
-  const [editName, setEditName] = useState<string>("");
-  const [editDescription, setEditDescription] = useState<string>("");
+  const participantsPerPage = 10;
+  const lastParticipantIndex = currentPage * participantsPerPage;
+  const firstParticipantIndex = lastParticipantIndex - participantsPerPage;
+  const currentParticipants = participants.slice(
+    firstParticipantIndex,
+    lastParticipantIndex
+  );
+  const totalPages = Math.ceil(participants.length / participantsPerPage);
 
-  const handleEditButton = (s: Survey) => {
+  const [editParticipant, setEditParticipant] = useState<Participant>();
+  const [editName, setEditName] = useState<string>("");
+  const [editEmail, setEditEmail] = useState<string>("");
+
+  const handleEditButton = (p: Participant) => {
     setEditModalStatus(true);
-    setEditSurvey(s);
-    setEditName(s.name);
-    setEditDescription(s.description);
+    setEditParticipant(p);
+    setEditName(p.name);
+    setEditEmail(p.email);
   };
 
   const handleSaveButton = () => {
-    if (!editSurvey) return;
+    if (!editParticipant) return;
 
-    const updatedSurvey: Survey = {
-      ...editSurvey,
+    const updatedParticipant: Participant = {
+      ...editParticipant,
       name: editName,
-      description: editDescription,
+      email: editEmail,
       dateUpdated: new Date().toISOString(),
     };
 
-    updateSurvey(updatedSurvey);
+    updateParticipant(updatedParticipant);
     setEditName("");
-    setEditDescription("");
+    setEditEmail("");
     setEditModalStatus(false);
   };
 
   const handleCancelButton = () => {
     setEditName("");
-    setEditDescription("");
+    setEditEmail("");
     setEditModalStatus(false);
     setDeleteStatus(false);
   };
 
-  const handleDeleteButton = (s: Survey) => {
+  const handleDeleteButton = (p: Participant) => {
     setDeleteStatus(true);
-    setEditSurvey(s);
+    setEditParticipant(p);
   };
 
   const handleDeleteConfirmation = () => {
-    if (editSurvey) {
-      deleteSurvey(editSurvey.id);
+    if (editParticipant) {
+      deleteParticipant(editParticipant.id);
       setEditName("");
-      setEditDescription("");
+      setEditEmail("");
       setDeleteStatus(false);
     }
   };
 
   return (
     <>
-      <div className="w-full h-full lg:rounded-sm lg:overflow-auto">
-        <table className="hidden lg:table table-separate text-left table-auto w-full h-auto">
+      <div className="w-full h-full rounded-sm overflow-auto">
+        <table className="table-separate text-left table-auto w-full h-auto">
           <thead>
             <tr className="bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black p-2">
               <th className="p-2 w-[17.5%]">Name</th>
-              <th className="p-2 w-[30%]">Description</th>
-              <th className="text-center p-2">No. of Participants</th>
-              <th className="text-center p-2">Date Created</th>
+              <th className="p-2 w-[20%]">E-mail</th>
+              <th className="text-center max-w-[25%] p-2">Surveys</th>
+              <th className="text-center p-2">Date Submitted</th>
               <th className="text-center p-2">Date Updated</th>
               <th className="text-center p-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {currentSurveys.map((survey, index) => (
+            {currentParticipants.map((participant, index) => (
               <tr key={index} className="border-b border-btn-stop">
-                <td className="p-1 text-offwhite">{survey.name}</td>
-                <td className="p-1 text-offwhite">{survey.description}</td>
-                <td className="p-1 text-offwhite text-center">
-                  {survey.participants}
+                <td className="p-1 text-offwhite">{participant.name}</td>
+                <td className="p-1 text-offwhite">{participant.email}</td>
+                <td className="p-1 text-offwhite text-center max-w-[150px] truncate relative group">
+                  <span
+                    className="cursor-default"
+                    title={participant.surveys
+                      .map((surveyId) => {
+                        const survey = surveys.find((s) => s.id === surveyId);
+                        return survey?.name || `Unknown Survey (${surveyId})`;
+                      })
+                      .join(", ")}
+                  >
+                    {participant.surveys
+                      .map((surveyId) => {
+                        const survey = surveys.find((s) => s.id === surveyId);
+                        return survey?.name || `Unknown Survey (${surveyId})`;
+                      })
+                      .join(", ")}
+                  </span>
                 </td>
                 <td className="p-1 text-offwhite text-center">
-                  {new Date(survey.dateCreated).toISOString().slice(0, 10)}
+                  {new Date(participant.dateSubmitted)
+                    .toISOString()
+                    .slice(0, 10)}
                 </td>
                 <td className="p-1 text-offwhite text-center">
-                  {new Date(survey.dateUpdated).toISOString().slice(0, 10)}
+                  {new Date(participant.dateUpdated).toISOString().slice(0, 10)}
                 </td>
                 <td className="flex gap-2 justify-center items-center p-1 text-offwhite text-center">
                   <button
                     className="group p-4 rounded-sm border-2 border-btn-stop cursor-pointer hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end"
-                    onClick={() => handleEditButton(survey)}
+                    onClick={() => handleEditButton(participant)}
                   >
                     <img
                       src={pencil}
@@ -109,7 +136,7 @@ const SurveysTable: React.FC = () => {
                   </button>
                   <button
                     className="group p-4 rounded-sm border-2 border-btn-stop cursor-pointer hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end"
-                    onClick={() => handleDeleteButton(survey)}
+                    onClick={() => handleDeleteButton(participant)}
                   >
                     <img
                       src={trash}
@@ -128,7 +155,7 @@ const SurveysTable: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="lg:flex lg:flex-row lg:pb-4 justify-center items-center w-full h-auto gap-2 hidden">
+      <div className="flex flex-row pb-4 justify-center items-center w-full h-auto gap-2">
         <button
           className="px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black cursor-pointer rounded-sm"
           onClick={() => {
@@ -170,7 +197,7 @@ const SurveysTable: React.FC = () => {
               <h1 className="font-bold text-2xl">Edit Survey Details</h1>
             </div>
             <div className="flex flex-col gap-2 p-4">
-              <p className="text-sm text-btn-stop">Survey Name</p>
+              <p className="text-sm text-btn-stop">Participant Name</p>
               <input
                 type="text"
                 value={editName}
@@ -179,19 +206,19 @@ const SurveysTable: React.FC = () => {
               />
             </div>
             <div className="flex flex-col gap-2 p-4">
-              <p className="text-sm text-btn-stop">Survey Description</p>
+              <p className="text-sm text-btn-stop">Particpant E-mail</p>
               <input
                 type="text"
-                value={editDescription}
+                value={editEmail}
                 className="bg-bg w-full p-2 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-offwhite focus:border-emphasizedtext caret-fieldgray transition-all duration-500"
-                onChange={(e) => setEditDescription(e.target.value)}
+                onChange={(e) => setEditEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-row gap-2 p-4 mb-2">
               <button
                 className="w-[50%] px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"
                 onClick={() => {
-                  if (editSurvey) handleSaveButton();
+                  if (editParticipant) handleSaveButton();
                 }}
               >
                 Save Changes
@@ -210,13 +237,13 @@ const SurveysTable: React.FC = () => {
         <div className="absolute inset-0 w-full h-full bg-transparentoverlay">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-auto flex flex-col gap-2 overflow-hidden bg-gradient-to-tl from-bg via-cardstop to-cardend shadow-login rounded-lg">
             <div className="flex flex-row w-full h-auto p-4 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black justify-between">
-              <h1 className="font-bold text-2xl">Confirm Survey Delete</h1>
+              <h1 className="font-bold text-2xl">Confirm Participant Delete</h1>
             </div>
             <div className="flex flex-row gap-2 p-4 mb-2">
               <button
                 className="w-[50%] px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"
                 onClick={() => {
-                  if (editSurvey) handleDeleteConfirmation();
+                  if (editParticipant) handleDeleteConfirmation();
                 }}
               >
                 Delete
@@ -235,4 +262,4 @@ const SurveysTable: React.FC = () => {
   );
 };
 
-export default SurveysTable;
+export default ParticipantsTable;
