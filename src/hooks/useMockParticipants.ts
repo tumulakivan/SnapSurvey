@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mockParticipants } from "../data/mockParticipants";
+import { mockParticipants } from "../data/MockParticipants";
 
 export type Participant = {
   id: number;

@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-tl from-bg to-cardend h-[60%] w-[80%] md:h-[40%] md:w-[40%] lg:h-[60%] lg:w-[20%] rounded-2xl p-8 shadow-login shadow-loginbg">
+    <div className="flex flex-col items-center bg-gradient-to-tl from-bg via-cardstop to-cardend h-[60%] w-[80%] md:h-[40%] md:w-[40%] lg:h-[60%] lg:w-[20%] rounded-2xl p-8 shadow-login shadow-loginbg">
       <div className="h-1/2 w-full flex flex-col items-center justify-center">
         <img
           src="/snaplogo.png"
