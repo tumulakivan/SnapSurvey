@@ -1,12 +1,12 @@
 import { useState } from "react";
-import inactiveBurger from "../assets/icons/inactiveburger.png";
-import activeBurger from "../assets/icons/activeburger.png";
+import burger from "../assets/icons/menu96.png";
 import type { DashboardTypes } from "../types/DashboardTypes";
-import activeDoor from "../assets/icons/activedoor.png";
-import inactiveDoor from "../assets/icons/inactivedoor.png";
+import door from "../assets/icons/door96.png";
 import { useAuth } from "../contexts/AuthContext";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const LogoCombo: React.FC<DashboardTypes> = ({ onClick }) => {
+  const isLarge = useMediaQuery();
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [burgerHovered, setBurgerHovered] = useState(false);
   const [doorStatus, setDoorStatus] = useState(false);
@@ -25,33 +25,32 @@ const LogoCombo: React.FC<DashboardTypes> = ({ onClick }) => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-between">
+    <div className="flex flex-row items-center justify-between w-full">
       <img
-        src={activeBurger}
+        src={burger}
         alt="menu burger"
-        className="w-[10%] ml-2 lg:w-[1.5%] lg:-ml-[10px] lg:cursor-pointer block md:hidden"
-        onClick={handleBurger}
-      />
-      <img
-        src={burgerStatus || burgerHovered ? activeBurger : inactiveBurger}
-        alt="menu burger"
-        className="w-[10%] ml-2 lg:w-[2.5%] lg:-ml-[10px] lg:cursor-pointer hidden lg:block"
+        className={`scale-[50%] cursor-pointer rounded-lg transition-all duration-500 ${
+          isLarge
+            ? burgerStatus || burgerHovered
+              ? "shadow-floatleft"
+              : ""
+            : ""
+        }`}
         onClick={handleBurger}
         onMouseEnter={() => setBurgerHovered(true)}
         onMouseLeave={() => setBurgerHovered(false)}
       />
+      <h1 className="text-7xl lg:text-5xl font-company">
+        <span className="bg-gradient-to-tl from-mentisbg1 via-mentisbg2 to-mentisbg3 bg-clip-text text-transparent">
+          S
+        </span>
+        {isLarge ? "NAPSURVEY" : ""}
+      </h1>
       <img
-        src="./snaplogo.png"
-        alt="SnapSurvey"
-        className="w-[20%] lg:w-[4%] lg:-ml-[20px] select-none"
-      />
-      <img
-        src={doorStatus || doorHovered ? activeDoor : inactiveDoor}
+        src={door}
         alt="exit"
-        className={`w-[10%] mr-2 lg:w-[2.5%] lg:-mr-[7px] rounded-lg lg:cursor-pointer ${
-          doorStatus || doorHovered
-            ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end"
-            : ""
+        className={`scale-[50%] cursor-pointer rounded-lg transition-all duration-500 ${
+          doorHovered ? "shadow-floatright" : ""
         }`}
         onClick={handleExit}
         onMouseEnter={() => setDoorHovered(true)}

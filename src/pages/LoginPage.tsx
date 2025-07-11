@@ -38,30 +38,26 @@ const LoginPage: React.FC = () => {
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-tl from-bg via-cardstop to-cardend h-[60%] w-[80%] md:h-[40%] md:w-[40%] lg:h-[60%] lg:w-[20%] rounded-2xl p-8 shadow-login shadow-loginbg">
+    <div className="flex flex-col items-center bg-white h-[60%] w-[80%] md:h-[40%] md:w-[40%] lg:h-[60%] lg:w-[20%] rounded-2xl p-8 shadow-login shadow-loginbg">
       <div className="h-1/2 w-full flex flex-col items-center justify-center">
-        <img
-          src="/snaplogo.png"
-          alt="company logo"
-          className="w-[10rem] -translate-y-4"
-        />
-        <h1 className="text-emphasizedtext text-3xl md:text-4xl font-company">
-          SNAPSURVEY
+        <h1 className="text-9xl font-bold font-company bg-gradient-to-tl from-mentisbg1 via-mentisbg2 to-mentisbg3 bg-clip-text text-transparent">
+          S
         </h1>
+        <h1 className="text-black text-5xl weight- font-company">SNAPSURVEY</h1>
       </div>
       <div className="flex flex-col justify-center items-center h-1/2 w-full gap-4">
         <form className="flex flex-col w-full gap-4">
           <input
             type="text"
             placeholder="Username"
-            className="bg-bg p-2 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-offwhite focus:border-emphasizedtext caret-fieldgray transition-all duration-500"
+            className="bg-bg p-2 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-black focus:border-mentisblue caret-fieldgray transition-all duration-500"
             onChange={(e) => setUsername(e.target.value)}
           />
           <div className="w-full h-fit relative flex flex-row">
             <input
               type={btnStatus ? "text" : "password"}
               placeholder="Password"
-              className="bg-bg w-full p-2 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-offwhite focus:border-emphasizedtext caret-fieldgray transition-all duration-500"
+              className="bg-bg w-full p-2 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-black focus:border-mentisblue caret-fieldgray transition-all duration-500"
               onChange={(e) => setPassword(e.target.value)}
             />
             <img
@@ -75,16 +71,16 @@ const LoginPage: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end hover:outline hover:outline-emphasizedtext hover:outline-offset-1 rounded-lg cursor-pointer"
+            className="w-full px-4 py-2 bg-gradient-to-tl from-mentisblue to-mentisbg1 outline outline-offset-1 outline-invisible hover:outline-mentisblue rounded-lg cursor-pointer transition-all duration-500"
             onClick={handleSubmit}
           >
             Sign in
           </button>
           <div className="flex flex-row justify-between items-center w-full h-fit">
-            <p className="text-fieldgray hover:text-emphasizedtext text-xs transition-all duration-500 cursor-pointer">
+            <p className="text-fieldgray hover:text-mentisblue text-xs transition-all duration-500 cursor-pointer">
               Forgot password
             </p>
-            <p className="text-fieldgray hover:text-emphasizedtext text-xs transition-all duration-500 cursor-pointer">
+            <p className="text-fieldgray hover:text-mentisblue text-xs transition-all duration-500 cursor-pointer">
               Create an account
             </p>
           </div>

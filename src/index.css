@@ -1,9 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bytesized&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #272727;
-  --color-offwhite: #f1f1f1;
+  --color-bg: #f3f4f6;
   --color-emphasizedtext: #ffc20c;
   --color-cardstop: #2d2d2d;
   --color-cardend: #393939;
@@ -11,11 +10,36 @@
   --color-btn-start: #fec70b;
   --color-btn-stop: #fba51c;
   --color-btn-end: #f27223;
+  --color-mentisblue: #303df5;
+  --color-mentiscyan: #24c682;
+  --color-mentisgreen: #a4d11f;
+  --color-mentisred: #f89b29;
+  --color-mentisdarkred: #ff0f7b;
+  --color-mentisbg1: #8ab8f5;
+  --color-mentisbg2: #a4c0f7;
+  --color-mentisbg3: #d3f1e0;
+  --color-mentisgray: #afafae;
+  --color-cardbg1: #232323;
+  --color-cardbg2: #535353;
+  --color-cardbg3: #9f9f9f;
+  --color-invisible: rgba(0, 0, 0, 0);
   --color-transparentoverlay: rgba(0, 0, 0, 0.5);
   --color-btn-hovered: rgba(254, 199, 11, 0.25);
 
-  --shadow-login: -1px -1px 1px rgba(255, 255, 255, 0.5),
-    0px 0px 10px rgba(0, 0, 0, 0.75);
+  --shadow-floatleft: 2px 0px 1px rgba(0, 0, 0, 0.75);
+  --shadow-floatright: -2px 0px 1px rgba(0, 0, 0, 0.75);
+  --shadow-brcorner: 0px 0px 1px rgba(0, 0, 0, 0.75);
+  --shadow-mdnavbar: 0px 2px 1px rgba(0, 0, 0, 0.75);
+  --shadow-login: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  --shadow-bezzel: -1px -1px 1px rgba(255, 255, 255, 1),
+    1px 1px 5px rgba(0, 0, 0, 0.75);
 
-  --font-company: "Monoton", sans-serif;
+  --font-company: "Bytesized", sans-serif;
+  --font-main: "Roboto", sans-serif;
 }
+
+/*
+  #a4d11f - light green
+  #24c682 - cyanish color
+  #303df5 - deep blue
+*/
