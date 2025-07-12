@@ -3,12 +3,10 @@ import type { MenuTypes } from "../types/MenuTypes";
 import { useNavigate } from "react-router-dom";
 
 const Menu: React.FC<MenuTypes> = ({ status }) => {
-  const [selectedPage, setSelectedPage] = useState<
-    "surveys" | "participants" | "results"
-  >("surveys");
+  const [selectedPage, setSelectedPage] = useState<string>("surveys");
   const navigate = useNavigate();
 
-  const handleChangePage = (page: "surveys" | "participants" | "results") => {
+  const handleChangePage = (page: string) => {
     setSelectedPage(page);
     navigate(`/${page}`);
   };
@@ -42,7 +40,7 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
         Participants
       </button>
       <button
-        className={`text-xl p-2 rounded-sm transition-all duration-200 hover:bg-btn-hovered cursor-pointer ${
+        className={`text-xl p-2 rounded-sm transition-all duration-200 cursor-pointer ${
           selectedPage === "results"
             ? "bg-mentisblue text-white outline-2 outline-mentisblue outline-offset-4"
             : "text-black hover:bg-btn-hovered"
@@ -50,6 +48,16 @@ const Menu: React.FC<MenuTypes> = ({ status }) => {
         onClick={() => handleChangePage("results")}
       >
         Results
+      </button>
+      <button
+        className={`text-xl p-2 rounded-sm transition-all duration-200 cursor-pointer ${
+          selectedPage === "test"
+            ? "bg-mentisblue text-white outline-2 outline-mentisblue outline-offset-4"
+            : "text-black hover:bg-btn-hovered"
+        }`}
+        onClick={() => handleChangePage("test")}
+      >
+        Test Survey
       </button>
     </div>
   );
