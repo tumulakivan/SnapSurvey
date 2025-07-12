@@ -6,22 +6,29 @@ import {
 import { useMockSurveys } from "../hooks/useMockSurveys";
 import pencil from "../assets/icons/pencil96.png";
 import trash from "../assets/icons/trash96.png";
+import search from "../assets/icons/searchbar96.png";
 
 const ParticipantsTable: React.FC = () => {
   const { participants, updateParticipant, deleteParticipant } =
     useMockParticipants();
   const { surveys } = useMockSurveys();
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const filteredParticipants = participants.filter((p) =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   const [editModalStatus, setEditModalStatus] = useState(false);
   const [deleteStatus, setDeleteStatus] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const participantsPerPage = 10;
   const lastParticipantIndex = currentPage * participantsPerPage;
   const firstParticipantIndex = lastParticipantIndex - participantsPerPage;
-  const currentParticipants = participants.slice(
+  const currentParticipants = filteredParticipants.slice(
     firstParticipantIndex,
     lastParticipantIndex
   );
-  const totalPages = Math.ceil(participants.length / participantsPerPage);
+  const totalPages = Math.ceil(
+    filteredParticipants.length / participantsPerPage
+  );
 
   const [editParticipant, setEditParticipant] = useState<Participant>();
   const [editName, setEditName] = useState<string>("");
@@ -72,7 +79,22 @@ const ParticipantsTable: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
+      <div className="w-full h-fit gap-2 relative flex flex-row items-center">
+        <h2>Filter Participants: </h2>
+        <input
+          type="text"
+          placeholder="Name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="bg-bg p-2 h-8 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-black focus:border-mentisblue caret-fieldgray transition-all duration-500"
+        />
+        <img
+          src={search}
+          alt="search bar"
+          className="absolute w-[1.5rem] left-75 top-1"
+        />
+      </div>
       <div className="w-full h-full rounded-sm overflow-auto">
         <table className="table-separate text-left table-auto w-full h-auto">
           <thead>
@@ -259,7 +281,7 @@ const ParticipantsTable: React.FC = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
