@@ -2,17 +2,25 @@ import { useState } from "react";
 import { useMockSurveys, type Survey } from "../hooks/useMockSurveys";
 import pencil from "../assets/icons/pencil96.png";
 import trash from "../assets/icons/trash96.png";
+import search from "../assets/icons/searchbar96.png";
 
 const SurveysTable: React.FC = () => {
   const { surveys, updateSurvey, deleteSurvey } = useMockSurveys();
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const filteredSurveys = surveys.filter((s) =>
+    s.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   const [editModalStatus, setEditModalStatus] = useState(false);
   const [deleteStatus, setDeleteStatus] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const surveysPerPage = 10;
   const lastSurveyIndex = currentPage * surveysPerPage;
   const firstSurveyIndex = lastSurveyIndex - surveysPerPage;
-  const currentSurveys = surveys.slice(firstSurveyIndex, lastSurveyIndex);
-  const totalPages = Math.ceil(surveys.length / surveysPerPage);
+  const currentSurveys = filteredSurveys.slice(
+    firstSurveyIndex,
+    lastSurveyIndex
+  );
+  const totalPages = Math.ceil(filteredSurveys.length / surveysPerPage);
   const [editSurvey, setEditSurvey] = useState<Survey>();
   const [editName, setEditName] = useState<string>("");
   const [editDescription, setEditDescription] = useState<string>("");
@@ -62,7 +70,22 @@ const SurveysTable: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
+      <div className="w-full h-fit gap-2 relative flex flex-row items-center">
+        <h2>Filter Surveys: </h2>
+        <input
+          type="text"
+          placeholder="Title"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="bg-bg p-2 h-8 rounded-lg border border-fieldgray focus:outline-none text-fieldgray focus:text-black focus:border-mentisblue caret-fieldgray transition-all duration-500"
+        />
+        <img
+          src={search}
+          alt="search bar"
+          className="absolute w-[1.5rem] left-67.5 top-1"
+        />
+      </div>
       <div className="w-full h-full lg:overflow-auto">
         <table className="hidden lg:table table-separate text-left table-auto w-full h-auto">
           <thead>
@@ -129,7 +152,7 @@ const SurveysTable: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="lg:flex lg:flex-row justify-center items-center w-full h-auto gap-2 hidden">
+      <div className="flex flex-row justify-center items-center w-full h-auto gap-2">
         <button
           className="px-4 py-2 bg-mentisblue hover:bg-gradient-to-tl hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3 text-white cursor-pointer rounded-sm"
           onClick={() => {
@@ -232,7 +255,7 @@ const SurveysTable: React.FC = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

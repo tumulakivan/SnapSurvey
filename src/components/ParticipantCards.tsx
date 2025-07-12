@@ -7,6 +7,8 @@ import {
 import ParticipantCard from "./ParticipantCard";
 import ParticipantEditOverlay from "./ParticipantEditOverlay";
 import ParticipantDeleteOverlay from "./ParticipantDeleteOverlay";
+import search from "../assets/icons/search96.png";
+import ParticipantSearch from "./ParticipantSearch";
 
 const ParticipantCards: React.FC = () => {
   const { participants, updateParticipant, deleteParticipant } =
@@ -14,9 +16,15 @@ const ParticipantCards: React.FC = () => {
   const { surveys } = useMockSurveys();
   const [editModalStatus, setEditModalStatus] = useState(false);
   const [deleteModalStatus, setDeleteModalStatus] = useState(false);
+  const [searchModalStatus, setSearchModalStatus] = useState(false);
   const [editParticipant, setEditParticipant] = useState<Participant>();
   const [editName, setEditName] = useState<string>("");
   const [editEmail, setEditEmail] = useState<string>("");
+
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const filteredParticipants = participants.filter((p) =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const resetFields = () => {
     setEditName("");
@@ -58,9 +66,13 @@ const ParticipantCards: React.FC = () => {
     }
   };
 
+  const handleSearchButton = () => {
+    setSearchModalStatus((prev) => !prev);
+  };
+
   return (
-    <>
-      {participants.map((participant) => (
+    <div className="flex flex-col gap-2 pb-20">
+      {filteredParticipants.map((participant) => (
         <ParticipantCard
           key={participant.id}
           participant={participant}
@@ -98,7 +110,19 @@ const ParticipantCards: React.FC = () => {
           }}
         />
       )}
-    </>
+      {searchModalStatus && (
+        <ParticipantSearch
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+      )}
+      <img
+        src={search}
+        alt="search list"
+        className="fixed p-4 h-16 w-16 bg-gradient-to-tr from-mentisbg1 via-mentisbg2 to-mentisbg3 border border-mentisblue m-4 bottom-0 right-0 rounded-full"
+        onClick={() => handleSearchButton()}
+      ></img>
+    </div>
   );
 };
 

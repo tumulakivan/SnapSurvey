@@ -156,7 +156,7 @@ const ParticipantsTable: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex flex-row pb-4 justify-center items-center w-full h-auto gap-2">
+      <div className="flex flex-row justify-center items-center w-full h-auto gap-2">
         <button
           className="px-4 py-2 bg-mentisblue hover:bg-gradient-to-tl hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3 text-white cursor-pointer rounded-sm border-2 border-mentisblue"
           onClick={() => {
