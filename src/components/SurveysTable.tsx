@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useMockSurveys, type Survey } from "../hooks/useMockSurveys";
-import inactivePencil from "../assets/icons/blackpencil48.png";
-import pencil from "../assets/icons/pencil48.png";
-import inactiveTrash from "../assets/icons/blackdelete48.png";
-import trash from "../assets/icons/delete48.png";
+import pencil from "../assets/icons/pencil96.png";
+import trash from "../assets/icons/trash96.png";
 
 const SurveysTable: React.FC = () => {
   const { surveys, updateSurvey, deleteSurvey } = useMockSurveys();
@@ -65,35 +63,38 @@ const SurveysTable: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-full lg:rounded-sm lg:overflow-auto">
+      <div className="w-full h-full lg:overflow-auto">
         <table className="hidden lg:table table-separate text-left table-auto w-full h-auto">
           <thead>
-            <tr className="bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black p-2">
-              <th className="p-2 w-[17.5%]">Name</th>
+            <tr className="bg-mentisblue text-white p-2">
+              <th className="p-2 w-[17.5%] rounded-tl-sm">Name</th>
               <th className="p-2 w-[30%]">Description</th>
               <th className="text-center p-2">No. of Participants</th>
               <th className="text-center p-2">Date Created</th>
               <th className="text-center p-2">Date Updated</th>
-              <th className="text-center p-2">Actions</th>
+              <th className="text-center p-2 rounded-tr-sm">Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentSurveys.map((survey, index) => (
-              <tr key={index} className="border-b border-btn-stop">
-                <td className="p-1 text-offwhite">{survey.name}</td>
-                <td className="p-1 text-offwhite">{survey.description}</td>
-                <td className="p-1 text-offwhite text-center">
+              <tr
+                key={index}
+                className={`${index % 2 !== 0 ? "bg-gray-300" : ""}`}
+              >
+                <td className="p-1.5 text-offwhite">{survey.name}</td>
+                <td className="p-1.5 text-offwhite">{survey.description}</td>
+                <td className="p-1.5 text-offwhite text-center">
                   {survey.participants}
                 </td>
-                <td className="p-1 text-offwhite text-center">
+                <td className="p-1.5 text-offwhite text-center">
                   {new Date(survey.dateCreated).toISOString().slice(0, 10)}
                 </td>
-                <td className="p-1 text-offwhite text-center">
+                <td className="p-1.5 text-offwhite text-center">
                   {new Date(survey.dateUpdated).toISOString().slice(0, 10)}
                 </td>
-                <td className="flex gap-2 justify-center items-center p-1 text-offwhite text-center">
+                <td className="flex gap-2 justify-center items-center p-1.5 text-offwhite text-center">
                   <button
-                    className="group p-4 rounded-sm border-2 border-btn-stop cursor-pointer hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end"
+                    className="group p-4 rounded-sm bg-mentiscyan cursor-pointer hover:bg-gradient-to-tr hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3"
                     onClick={() => handleEditButton(survey)}
                   >
                     <img
@@ -102,13 +103,13 @@ const SurveysTable: React.FC = () => {
                       className="transition-all duration-100 w-[18px] group-hover:hidden"
                     />
                     <img
-                      src={inactivePencil}
+                      src={pencil}
                       alt="update/edit hover"
                       className="transition-all duration-100 w-[18px] hidden group-hover:block"
                     />
                   </button>
                   <button
-                    className="group p-4 rounded-sm border-2 border-btn-stop cursor-pointer hover:bg-gradient-to-tr hover:from-btn-start hover:via-btn-stop hover:to-btn-end"
+                    className="group p-4 rounded-sm bg-mentisred cursor-pointer hover:bg-gradient-to-tr hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3"
                     onClick={() => handleDeleteButton(survey)}
                   >
                     <img
@@ -117,7 +118,7 @@ const SurveysTable: React.FC = () => {
                       className="transition-all duration-100 w-[18px] group-hover:hidden"
                     />
                     <img
-                      src={inactiveTrash}
+                      src={trash}
                       alt="delete hover"
                       className="transition-all duration-100 w-[18px] hidden group-hover:block"
                     />
@@ -128,9 +129,9 @@ const SurveysTable: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="lg:flex lg:flex-row lg:pb-4 justify-center items-center w-full h-auto gap-2 hidden">
+      <div className="lg:flex lg:flex-row justify-center items-center w-full h-auto gap-2 hidden">
         <button
-          className="px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black cursor-pointer rounded-sm"
+          className="px-4 py-2 bg-mentisblue hover:bg-gradient-to-tl hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3 text-white cursor-pointer rounded-sm"
           onClick={() => {
             if (currentPage - 1 > 0) {
               setCurrentPage(currentPage - 1);
@@ -142,10 +143,10 @@ const SurveysTable: React.FC = () => {
         {Array.from({ length: totalPages }, (__, index) => (
           <button
             key={index}
-            className={`px-4 py-2 cursor-pointer rounded-sm transition-all duration-100 ${
+            className={`px-4 py-2 cursor-pointer rounded-sm hover:bg-gradient-to-tl hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3 ${
               currentPage === index + 1
-                ? "bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black outline-2 outline-btn-stop outline-offset-2"
-                : "bg-bg text-offwhite border-2 border-btn-stop"
+                ? "bg-mentisblue text-white outline-2 outline-mentisblue outline-offset-2"
+                : "bg-bg text-offwhite border-2 border-mentisblue"
             }`}
             onClick={() => setCurrentPage(index + 1)}
           >
@@ -153,7 +154,7 @@ const SurveysTable: React.FC = () => {
           </button>
         ))}
         <button
-          className="px-4 py-2 bg-gradient-to-tr from-btn-start via-btn-stop to-btn-end text-black cursor-pointer rounded-sm"
+          className="px-4 py-2 bg-mentisblue hover:bg-gradient-to-tl hover:from-mentisbg1 hover:via-mentisbg2 hover:to-mentisbg3 text-white cursor-pointer rounded-sm"
           onClick={() => {
             if (currentPage + 1 <= totalPages) {
               setCurrentPage(currentPage + 1);

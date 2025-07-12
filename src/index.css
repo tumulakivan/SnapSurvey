@@ -13,8 +13,8 @@
   --color-mentisblue: #303df5;
   --color-mentiscyan: #24c682;
   --color-mentisgreen: #a4d11f;
-  --color-mentisred: #f89b29;
-  --color-mentisdarkred: #ff0f7b;
+  --color-mentisred: #f14c4c;
+  --color-mentisdarkred: #e31212;
   --color-mentisbg1: #8ab8f5;
   --color-mentisbg2: #a4c0f7;
   --color-mentisbg3: #d3f1e0;
@@ -24,7 +24,7 @@
   --color-cardbg3: #9f9f9f;
   --color-invisible: rgba(0, 0, 0, 0);
   --color-transparentoverlay: rgba(0, 0, 0, 0.5);
-  --color-btn-hovered: rgba(254, 199, 11, 0.25);
+  --color-btn-hovered: rgba(48, 61, 245, 0.25);
 
   --shadow-floatleft: 2px 0px 1px rgba(0, 0, 0, 0.75);
   --shadow-floatright: -2px 0px 1px rgba(0, 0, 0, 0.75);

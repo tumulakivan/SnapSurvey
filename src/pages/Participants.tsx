@@ -6,7 +6,7 @@ const Participants: React.FC = () => {
   const isLarge = useMediaQuery();
 
   return (
-    <div className="flex flex-col w-full h-screen overflow-y-auto p-4 pb-20 lg:h-full lg:pb-0 lg:bg-black lg:rounded-xl gap-4 relative">
+    <div className="flex flex-col w-full h-screen overflow-y-auto p-4 pb-20 lg:h-full lg:pb-0 lg:bg-white lg:rounded-xl gap-4 relative">
       {isLarge ? <ParticipantsTable /> : <ParticipantCards />}
     </div>
   );
