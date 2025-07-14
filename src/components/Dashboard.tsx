@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Surveys from "../pages/Surveys";
 import Participants from "../pages/Participants";
+import TestSurvey from "../pages/TestSurvey";
 
 const Dashboard: React.FC = () => {
   return (
@@ -8,6 +9,7 @@ const Dashboard: React.FC = () => {
       <Routes>
         <Route path="/surveys" element={<Surveys />} />
         <Route path="/participants" element={<Participants />} />
+        <Route path="/test" element={<TestSurvey />} />
       </Routes>
     </div>
   );
