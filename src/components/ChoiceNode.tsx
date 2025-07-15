@@ -20,7 +20,7 @@ const ChoiceNode: React.FC<ChoiceNodeTypes> = ({
     <>
       <div className="w-[5%] aspect-square bg-gray-400 rounded-full relative">
         <div
-          className={`w-full aspect-square rounded-full absolute transition-colors duration-500 ${
+          className={`w-full aspect-square rounded-full absolute transition-colors duration-500 cursor-pointer ${
             isActive ? color : ""
           }`}
           onClick={onClick}

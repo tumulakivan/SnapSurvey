@@ -29,8 +29,8 @@ const Question2: React.FC<QuestionTypes> = ({ states, actions }) => {
       <div className="w-full p-4">
         <LikertScale node={states?.node ?? null} setNode={actions.setNode!} />
       </div>
-      <div className="w-full -mt-5">
-        <div className="flex justify-center text-center gap-7 text-xs w-full">
+      <div className="w-full -mt-5 lg:-mt-0">
+        <div className="flex justify-center text-center gap-7 lg:gap-40 text-xs w-full">
           {texts.map((text, index) => (
             <div key={index} className="w-[20%] break-words">
               {text}

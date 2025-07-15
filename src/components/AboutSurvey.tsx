@@ -4,7 +4,11 @@ const AboutSurvey = () => {
   return (
     <>
       <h1 className="text-3xl font-bold">About the survey</h1>
-      <img src={loremIpsum} alt="lorem ipsum haha" />
+      <img
+        src={loremIpsum}
+        alt="lorem ipsum haha"
+        className="lg:h-[50%] lg:w-[40%] lg:self-center"
+      />
       <p>
         So you might be asking, "What is this survey about?". Well, lorem ipsum
         dolor sit amet, consectetur adipiscing elit. Mauris congue diam sem, sit

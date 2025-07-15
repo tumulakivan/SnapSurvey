@@ -6,7 +6,7 @@ const TestSurvey: React.FC = () => {
   const isLarge = useMediaQuery();
 
   return (
-    <div className="flex flex-col w-full h-full overflow-y-auto p-4 bg-bg lg:h-full lg:rounded-xl relative">
+    <div className="flex flex-col w-full h-full overflow-y-auto p-4 bg-white lg:h-full lg:rounded-xl relative">
       {isLarge ? <TestSurveyLarge /> : <TestSurveyMobile />}
     </div>
   );

@@ -30,7 +30,7 @@ const ParticipantCard: React.FC<ParticipantCardTypes> = ({
       </div>
       <div className="flex flex-row gap-2">
         <button
-          className="px-4 py-2 rounded-sm  bg-gradient-to-br from-mentisbg1 via-mentisbg2 to-mentisbg3 border border-mentisbg1 text-black w-[50%]"
+          className="px-4 py-2 rounded-sm bg-gradient-to-br from-mentisbg1 via-mentisbg2 to-mentisbg3 border border-mentisbg1 text-black w-[50%]"
           onClick={() => actions.handleEditButton(participant)}
         >
           Update
