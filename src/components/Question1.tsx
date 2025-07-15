@@ -1,6 +1,15 @@
+import type { QuestionTypes } from "../types/QuestionTypes";
 import LikertScale from "./LikertScale";
 
-const Question1 = () => {
+const Question1: React.FC<QuestionTypes> = ({ states, actions }) => {
+  const texts = [
+    "Strongly Disagree",
+    "Disagree",
+    "Neutral",
+    "Agree",
+    "Strongly Agree",
+  ];
+
   return (
     <>
       <h1 className="text-3xl font-bold">Question 1</h1>
@@ -12,7 +21,16 @@ const Question1 = () => {
       </div>
 
       <div className="w-full p-4">
-        <LikertScale />
+        <LikertScale node={states?.node ?? null} setNode={actions.setNode!} />
+      </div>
+      <div className="w-full -mt-5">
+        <div className="flex justify-center text-center gap-7 text-xs w-full">
+          {texts.map((text, index) => (
+            <div key={index} className="w-[20%] break-words">
+              {text}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

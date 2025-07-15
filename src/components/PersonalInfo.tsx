@@ -17,7 +17,9 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ states, actions }) => {
     <>
       <h1 className="text-3xl font-bold">Personal Information</h1>
       <div className="flex flex-col gap-2">
-        <p className="text-sm translate-x-2">E-mail address</p>
+        <p className="text-sm translate-x-2">
+          E-mail address <span className="text-red-600">*</span>
+        </p>
         <input
           type="text"
           value={states.email}
